@@ -1,0 +1,61 @@
+---
+title: "R Notebook"
+author: "Sreeja Nair"
+output: html_notebook
+---
+
+
+```{r , include = FALSE}
+
+library(tidyverse)
+
+```
+
+
+```{r setup, echo=FALSE}
+
+cars <- read_csv("C:/Users/sreej/Desktop/cars.csv")
+
+names(cars)  #column headings
+
+cars %>% 
+  count(cyl)
+
+cyltable <- cars %>% 
+  count(cyl) %>% 
+  print()
+
+cars %>% 
+  count(cyl, gear)
+
+cars %>% 
+  summarise(meanmpg = mean(mpg, na.rm = T))
+
+cars %>% 
+  group_by(cyl) %>% 
+  summarise(meanmpg = mean(mpg, na.rm =T))
+
+cars %>% 
+  count(cyl) %>% 
+  ggplot(aes(x=cyl, y=n))+
+  geom_col()
+
+cars %>% 
+  count(cyl) %>%
+  ggplot(aes(x=cyl, y=n))+
+  geom_abline()
+
+
+
+cars %>% 
+  count(cyl) %>% 
+  ggplot(aes(x=cyl, y=n))+
+  geom_col(fill="#741D5A")+
+  labs(y="Number", x= "Cylinders")+
+  ggtitle("Number of Cars by Cylinder")+
+  theme_minimal()
+
+
+```
+
+
