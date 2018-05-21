@@ -9,12 +9,14 @@ output: html_notebook
 
 library(tidyverse)
 
+?mtcars
+
 ```
 
 
 ```{r setup, echo=FALSE}
 
-cars <- read_csv("C:/Users/sreej/Desktop/cars.csv")
+cars <- read_csv("C:/Users/sreej/Desktop/Sorenson/Training/cars.csv")
 
 names(cars)  #column headings
 
@@ -58,4 +60,113 @@ cars %>%
 
 ```
 
+
+# Exercises
+
+```{r}
+
+# Create table of the number of cars by gear 
+
+geartable <- cars %>% 
+  count(gear) %>% 
+  print()
+
+
+
+# Create table of the number of cars by carb
+
+carbtable <- cars %>% 
+  count(carb) %>% 
+  print()
+
+
+#	Create a table of vs (0 - V shaped engine, 1 - Staight engine)
+
+vstable <- cars %>% 
+  count(vs) %>% 
+  print()
+
+#	Create a table of am (0 - Auto transmission, 1 - Manual transmission)
+
+amtable <- cars %>% 
+  count(am) %>% 
+  print()
+
+
+#	Create a table of cyl by gear
+
+cylbygear <- cars %>%
+  count(cyl, gear) %>% 
+  print()
+  
+  
+  
+#	Create a table of cyl by am 
+
+cylbyam <- cars %>% 
+  count(cyl,am) %>% 
+  print()
+  
+  
+#	Create a table of cyl by vs
+
+cylbyvs <- cars %>%  
+  count(cyl,vs) %>% 
+  print()
+
+
+
+#	Create a histogram of wt
+
+?geom_histogram
+
+summary(cars)
+
+cars %>%  
+  ggplot(aes(x=wt))+
+  geom_histogram(binwidth = 0.2 )+
+  ggtitle("Number of Cars by Weight")+
+  theme_minimal()
+  
+
+
+#	Create a histogram of mpg
+
+cars %>%  
+  ggplot(aes(x=mpg))+
+  geom_histogram(binwidth = 3)+
+  ggtitle("Number of Cars by Miles per Gallon")+
+  theme_minimal()
+
+
+#	Create a histogram of qsec
+
+
+#	Create a histogram of hp 
+
+
+#	Create a table of mean mpg by cyl
+
+
+#	Graph mean mpg by cyl 
+#	x=cyl, y=meanmpg
+
+
+#	Create a table of mean wt by cyl
+
+
+#	Graph mean wt by cyl
+#	x=cyl, y=meanwt
+
+
+#	Create a table of mean hp by cyl
+
+#	Graph mean hp by cyl
+#	x=cyl, y=meanhp
+
+
+#	Do any other exploratory analysis that interests you  
+
+
+```
 
