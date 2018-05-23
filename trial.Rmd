@@ -1,15 +1,14 @@
 ---
-title: "R Notebook"
+title: "RA Wk 1"
 author: "Sreeja Nair"
-output: html_notebook
+date: "May 22, 2018"
+output: html_document
 ---
 
 
 ```{r , include = FALSE}
 
 library(tidyverse)
-
-?mtcars
 
 ```
 
@@ -19,6 +18,13 @@ library(tidyverse)
 cars <- read_csv("C:/Users/sreej/Desktop/Sorenson/Training/cars.csv")
 
 names(cars)  #column headings
+
+```
+
+
+# Data Analysis 
+
+```{r }
 
 cars %>% 
   count(cyl)
@@ -48,7 +54,6 @@ cars %>%
   geom_abline()
 
 
-
 cars %>% 
   count(cyl) %>% 
   ggplot(aes(x=cyl, y=n))+
@@ -62,56 +67,85 @@ cars %>%
 
 
 # Exercises
-
+ 
+## Create table of the number of cars by gear 
+ 
+ 
 ```{r}
-
-# Create table of the number of cars by gear 
 
 geartable <- cars %>% 
   count(gear) %>% 
   print()
 
+```
 
+## Create table of the number of cars by carb
 
-# Create table of the number of cars by carb
+```{r}
 
 carbtable <- cars %>% 
   count(carb) %>% 
   print()
 
-#	Create a table of vs (0 - V shaped engine, 1 - Staight engine)
+```
+
+## Create a table of vs 
+
+```{r}
+
+#(0 - V shaped engine, 1 - Straight engine)
 
 vstable <- cars %>% 
   count(vs) %>% 
   print()
 
-#	Create a table of am (0 - Auto transmission, 1 - Manual transmission)
+```
+
+## Create a table of am 
+
+```{r}
+
+# (0 - Auto transmission, 1 - Manual transmission)
 
 amtable <- cars %>% 
   count(am) %>% 
   print()
 
-#	Create a table of cyl by gear
+```
+
+## Create a table of cyl by gear
+
+```{r}
 
 cylbygear <- cars %>%
   count(cyl, gear) %>% 
   print()
+
+```
   
-#	Create a table of cyl by am 
+## Create a table of cyl by am 
+
+```{r}
 
 cylbyam <- cars %>% 
   count(cyl,am) %>% 
   print()
+
+```
   
-#	Create a table of cyl by vs
+## Create a table of cyl by vs
+
+```{r}
 
 cylbyvs <- cars %>%  
   count(cyl,vs) %>% 
   print()
 
-#	Create a histogram of wt
+```
 
-?geom_histogram
+## Create a histogram of wt
+
+```{r}
 
 summary(cars)
 
@@ -120,10 +154,12 @@ cars %>%
   geom_histogram(binwidth = 0.2, fill= "#CD5C5C")+
   ggtitle("Number of Cars by Weight")+
   theme_minimal()
-  
 
+```
 
-#	Create a histogram of mpg
+## Create a histogram of mpg
+
+```{r}
 
 cars %>%  
   ggplot(aes(x=mpg))+
@@ -131,9 +167,13 @@ cars %>%
   ggtitle("Number of Cars by Miles per Gallon")+
   theme_minimal()
 
+```
 
-#	Create a histogram of qsec
-summary(cars$qsec)
+## Create a histogram of qsec
+
+```{r}
+
+#summary(cars$qsec)
  
 cars %>% 
   ggplot(aes(x=qsec))+
@@ -141,10 +181,13 @@ cars %>%
   ggtitle("Number of cars by 1/4 mile time")+
   theme_minimal()
 
+```
 
-#	Create a histogram of hp 
+## Create a histogram of hp 
 
-summary(cars$hp)
+```{r}
+
+#summary(cars$hp)
 
 cars %>% 
   ggplot(aes(x=hp))+
@@ -152,56 +195,79 @@ cars %>%
   ggtitle("Numberof cars by horsepower")+
   theme_minimal()
 
+```
 
-#	Create a table of mean mpg by cyl
+## Create a table of mean mpg by cyl
+
+```{r}
 
 mpgbycyl <- cars %>% 
   group_by(cyl) %>% 
   summarise(meanmpg = mean(mpg, na.rm = T)) %>% 
   print()
 
+```
 
-#	Graph mean mpg by cyl 
+## Graph mean mpg by cyl 
+
+```{r}
 
 mpgbycyl %>% 
   ggplot(aes(x = cyl, y = meanmpg))+
   geom_point(color = "#CD5C5C", size =3)+
-  labs(title = "Mean mpg by cylinder", x= "No. of cylinders", y="Mean miles per gallon")
+  labs(title = "Mean mpg by cylinder", x= "No. of cylinders", y="Mean miles per gallon")+
+  theme_minimal()
 
+```
 
-#	Create a table of mean wt by cyl
+## Create a table of mean wt by cyl
+
+```{r}
 
 wtbycyl <- cars %>% 
   group_by(cyl) %>% 
   summarise(meanwt = mean(wt, na.rm = T)) %>% 
   print()
 
+```
 
-#	Graph mean wt by cyl
+## Graph mean wt by cyl
 
+```{r}
 wtbycyl %>% 
   ggplot(aes(x = cyl, y = meanwt))+
   geom_point(color = "#CD5C5C", size =3)+
-  labs(title = "Mean wt. by cylinder", x= "No. of cylinders", y="Mean weight")
+  labs(title = "Mean wt. by cylinder", x= "No. of cylinders", y="Mean weight")+ 
+  theme_minimal()
 
+```
 
-#	Create a table of mean hp by cyl
+## Create a table of mean hp by cyl
+
+```{r}
 
 hpbycyl <- cars %>% 
   group_by(cyl) %>% 
   summarise(meanhp = mean(hp,na.rm = T)) %>% 
   print()
 
+```
 
-#	Graph mean hp by cyl
+## Graph mean hp by cyl
+
+```{r}
 
 hpbycyl %>% 
   ggplot(aes(x = cyl, y=meanhp))+
   geom_point(color = "#CD5C5C", size =3)+
-  labs(title = "Mean horsepower by cylinder", x = "No. of cylinders", y="Mean horsepower")
+  labs(title = "Mean horsepower by cylinder", x = "No. of cylinders", y="Mean horsepower")+
+  theme_minimal()
 
+```
 
-#	Do any other exploratory analysis that interests you  
+## Other exploratory analysis 
+
+```{r}
 
 #mean mpg by carb
 
@@ -217,6 +283,11 @@ cars %>%
   print() # For a given number of carburetor, as the number of cylinders increase, mpg decreases
 
 
+cars %>% 
+  ggplot(aes(x = drat, y = mpg))+
+  geom_point(color = "#CD5C5C", size =3)+
+  labs(title = "Miles per gallon vs. Rear axle ratio", x = "Rear axle ratio", y = "Miles per gallon")+
+  theme_minimal()
 
 ```
 
